@@ -84,7 +84,7 @@
 		<div id="aside">
 			<p>Hello <?php Print "$user"?>!</p> <!--Displays user's name-->
 			<a href="http://localhost/svecrw/user/logout.php"><input type="button" value="Logout"></a>
-			<a href="http://localhost/svecrw/ahome.php"><input type="button" value="Return to Home page"></a>
+			<a href="http://localhost/svecrw/admin/ahome.php"><input type="button" value="Return to Home page"></a>
 		</div>
 		<div id="section">
 		<ul>
@@ -152,7 +152,7 @@
 						Print '<td align="center">'. $row['designation'] . "</td>";
 						Print '<td align="center">'. $row['domain'] . "</td>";
 						Print '<td align="center">'. $row['wtype'] . "</td>";
-						Print '<td align="center"> <a href="/svecrw/'.$row['file'].'/">'. $row['file'].'</a></td>';
+						Print '<td align="center"> <a href="/svecrw/user/'.$row['file'].'" target = "blank">'. $row['file'].'</a></td>';
 					Print "</tr>";
 				}
 			?>

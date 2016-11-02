@@ -168,6 +168,26 @@
 							}
 						}
 					}
+					elseif($name!='')
+					{
+						if($designation='')
+						{
+							if($dept='')
+							{
+								$query = mysql_query("Select * from achlist where name = '$name'"); // SQL Query
+								while($row = mysql_fetch_array($query))
+								{
+									Print "<tr>";
+									Print '<td align="center">'. $row['id'] . "</td>";
+									Print '<td align="center">'. $row['name'] . "</td>";
+									Print '<td align="center">'. $row['designation'] . "</td>";
+									Print '<td align="center">'. $row['dept'] . "</td>";
+									Print '<td align="center">'. $row['acheivement'] . "</td>";
+									Print "</tr>";
+								}
+							}
+						}
+					}
 					else
 					{
 						$query = mysql_query("Select * from achlist"); // SQL Query

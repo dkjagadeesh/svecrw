@@ -93,7 +93,7 @@
 		<div id="aside">
 			<p>Hello <?php Print "$user"?>!</p> <!--Displays user's name-->
 			<a href="http://localhost/svecrw/user/logout.php"><input type="button" value="Logout"></a>
-			<a href="http://localhost/svecrw/ahome.php"><input type="button" value="Return to Home page"></a>
+			<a href="http://localhost/svecrw/admin/ahome.php"><input type="button" value="Return to Home page"></a>
 		</div>
 		<form class="form-horizontal" action="addrpub.php" method="post">
 			<!-- Form Name -->

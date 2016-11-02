@@ -58,33 +58,9 @@
 			<center><h2> Research Publications </h2></center>
 			<!-- Text input-->
 			<div class="form-group">
-				<label class="col-md-4 control-label" for="name">Search by Faculty Name</label>  
+				<label class="col-md-4 control-label" for="name">Search by Faculty Name/ Designation/ Department/ Journal Name/ Year</label>  
 				<div class="col-md-4">
-					<input id="name" name="name" type="text" placeholder="Enter faculty name as per records" class="form-control input-md">
-				</div>
-			</div>
-			<!-- Text input-->
-			<div class="form-group">
-				<label class="col-md-4 control-label" for="designation">Search by Designation</label>  
-				<div class="col-md-4">
-					<input id="designation" name="designation" type="text" placeholder="Enter Designation" class="form-control input-md">
-				</div>
-			</div>
-			<!-- Select Basic -->
-			<div class="form-group">
-				<label class="col-md-4 control-label" for="dept">Search Department-wise</label>
-				<div class="col-md-4">
-					<select id="dept" name="dept" class="form-control">
-						<option value="IT">IT</option>
-						<option value="CSE">CSE</option>
-						<option value="CSSE">CSSE</option>
-					</select>
-				</div>
-			</div>
-			<div class="form-group">
-				<label class="col-md-4 control-label" for="year">Search by Year</label>  
-				<div class="col-md-4">
-					<input id="year" name="year" type="text" placeholder="Enter year" class="form-control input-md">
+					<input id="search" name="search" type="text" placeholder="" class="form-control input-md">
 				</div>
 			</div>
 			<!-- Button -->
@@ -111,91 +87,19 @@
 				mysql_select_db("svecrw") or die("Cannot connect to database"); //connect to database
 				if(isset($_POST["submit"]))
 				{
-					$name = $_POST['name'];
-					$designation = $_POST['designation'];
-					$dept = $_POST['dept'];
-					$year = $_POST['year'];
-					if($name!='')
+					$search = $_POST['search'];
+					$query = mysql_query("Select * from rpub where name LIKE '%" . $search. "%' or designation LIKE '%" . $search. "%' or dept LIKE '%" . $search. "%' or journal_name LIKE '%" . $search. "%' or  year LIKE '%" . $search. "%'"); // SQL Query
+					while($row = mysql_fetch_array($query))
 					{
-						if($designation!='')
-						{
-							if($year!='')
-							{
-								$query = mysql_query("Select * from rpub where name = '$name', designation = '$designation', year = '$year'"); // SQL Query
-								while($row = mysql_fetch_array($query))
-								{
-									Print "<tr>";
-									Print '<td align="center">'. $row['name'] . "</td>";
-									Print '<td align="center">'. $row['designation'] . "</td>";
-									Print '<td align="center">'. $row['dept'] . "</td>";
-									Print '<td align="center">'. $row['journal_name'] . "</td>";
-									Print '<td align="center">'. $row['title']. "</td>";
-									Print '<td align="center">'. $row['paperinfo'] . "</td>";
-									Print '<td align="center">'. $row['year'] . "</td>";
-									Print "</tr>";
-								}	
-							}
-						}
-					}
-					elseif($name='')
-					{
-						if($designation!='')
-						{
-							if($year!='')
-							{
-								$query = mysql_query("Select * from rpub where designation = '$designation', year = '$year'"); // SQL Query
-								while($row = mysql_fetch_array($query))
-								{
-									Print "<tr>";
-									Print '<td align="center">'. $row['name'] . "</td>";
-									Print '<td align="center">'. $row['designation'] . "</td>";
-									Print '<td align="center">'. $row['dept'] . "</td>";
-									Print '<td align="center">'. $row['journal_name'] . "</td>";
-									Print '<td align="center">'. $row['title']. "</td>";
-									Print '<td align="center">'. $row['paperinfo'] . "</td>";
-									Print '<td align="center">'. $row['year'] . "</td>";
-									Print "</tr>";
-								}
-							}
-						}
-					}
-					elseif($name='')
-					{
-						if($designation='')
-						{
-							if($year!='')
-							{
-								$query = mysql_query("Select * from rpub where year = '$year'"); // SQL Query
-								while($row = mysql_fetch_array($query))
-								{
-									Print "<tr>";
-									Print '<td align="center">'. $row['name'] . "</td>";
-									Print '<td align="center">'. $row['designation'] . "</td>";
-									Print '<td align="center">'. $row['dept'] . "</td>";
-									Print '<td align="center">'. $row['journal_name'] . "</td>";
-									Print '<td align="center">'. $row['title']. "</td>";
-									Print '<td align="center">'. $row['paperinfo'] . "</td>";
-									Print '<td align="center">'. $row['year'] . "</td>";
-									Print "</tr>";
-								}
-							}
-						}
-					}
-					else
-					{
-						$query = mysql_query("Select * from rpub"); // SQL Query
-						while($row = mysql_fetch_array($query))
-						{
-							Print "<tr>";
-							Print '<td align="center">'. $row['name'] . "</td>";
-							Print '<td align="center">'. $row['designation'] . "</td>";
-							Print '<td align="center">'. $row['dept'] . "</td>";
-							Print '<td align="center">'. $row['journal_name'] . "</td>";
-							Print '<td align="center">'. $row['title']. "</td>";
-							Print '<td align="center">'. $row['paperinfo'] . "</td>";
-							Print '<td align="center">'. $row['year'] . "</td>";
-							Print "</tr>";
-						}
+						Print "<tr>";
+						Print '<td align="center">'. $row['name'] . "</td>";
+						Print '<td align="center">'. $row['designation'] . "</td>";
+						Print '<td align="center">'. $row['dept'] . "</td>";
+						Print '<td align="center">'. $row['journal_name'] . "</td>";
+						Print '<td align="center">'. $row['title']. "</td>";
+						Print '<td align="center">'. $row['paperinfo'] . "</td>";
+						Print '<td align="center">'. $row['year'] . "</td>";
+						Print "</tr>";
 					}
 				}
 				else
